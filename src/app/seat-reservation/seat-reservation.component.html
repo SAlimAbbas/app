@@ -1,0 +1,30 @@
+<h2>Seat Reservation</h2>
+<p>Selected Seats: {{ userSeats }}</p>
+
+<div class="seat-map">
+  <div class="seat-row" *ngFor="let row of coach; let rowIndex = index">
+    <div
+      class="seat"
+      *ngFor="let seat of row; let i = index"
+      [ngClass]="{ booked: seat.booked, selected: seat.selected }"
+      (click)="toggleSeatSelection(rowIndex, i)"
+    >
+      {{ seat.number }}
+    </div>
+  </div>
+</div>
+
+<div class="reservation-form">
+  <label for="numSeats" class="noseatslabel">Number of Seats:</label>
+  <input
+    type="number"
+    id="numSeats"
+    [(ngModel)]="numSeats"
+    min="1"
+    max="7"
+    class="formBox"
+  />
+  <button class="reservation-btn" (click)="reserveSeats(numSeats)">
+    Reserve Seats
+  </button>
+</div>
